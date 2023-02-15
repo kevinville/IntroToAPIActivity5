@@ -34,7 +34,7 @@ namespace WebAPIClient
             {
                 try
                 {
-                    Console.WriteLine("Enter Switch Game, enter without writing a name to quit.");
+                    Console.WriteLine("Enter Anime Name, enter without writing a name to quit.");
 
                     var animeName = Console.ReadLine();
 

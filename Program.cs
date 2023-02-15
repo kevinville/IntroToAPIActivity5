@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace WebAPIClient
 {
-    class Switchgames
+    class AnimeInfo
     {
         [JsonProperty("anime")]
         public string animu { get; set; }
@@ -36,28 +36,28 @@ namespace WebAPIClient
                 {
                     Console.WriteLine("Enter Switch Game, enter without writing a name to quit.");
 
-                    var switchGame = Console.ReadLine();
+                    var animeName = Console.ReadLine();
 
-                    if (string.IsNullOrEmpty(switchGame))
+                    if (string.IsNullOrEmpty(animeName))
                     {
                         break;
                     }
 
-                    var result = await client.GetAsync("https://animechan.vercel.app/api/random/anime?title=" + switchGame);
+                    var result = await client.GetAsync("https://animechan.vercel.app/api/random/anime?title=" + animeName);
                     var resultRead = await result.Content.ReadAsStringAsync();
 
-                    var switchstuff = JsonConvert.DeserializeObject<Switchgames>(resultRead);
+                    var animeStuff = JsonConvert.DeserializeObject<AnimeInfo>(resultRead);
 
                     Console.WriteLine("---");
-                    Console.WriteLine("Anime: " + switchstuff.animu);
-                    Console.WriteLine("Character Name: " + switchstuff.character);
-                    Console.WriteLine("Quote: " + switchstuff.quote);
+                    Console.WriteLine("Anime: " + animeStuff.animu);
+                    Console.WriteLine("Character Name: " + animeStuff.character);
+                    Console.WriteLine("Quote: " + animeStuff.quote);
 
                     Console.WriteLine("\n---");
                 }
                 catch(Exception)
                 {
-                    Console.WriteLine("Invalid Switch Game.");
+                    Console.WriteLine("Invalid Anime Name.");
                 }
             }
         }
